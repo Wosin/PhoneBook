@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PhoneBook>
+<User>
+<Id>1</Id>
+<Name>Mike Mikeson</Name>
+<Prefix>1040</Prefix>
+<Number>11122233</Number>
+</User>
+
+<User>
+<Id>3</Id>
+<Name>Tom Thomson</Name>
+<Prefix>1020</Prefix>
+<Number>999888111</Number>
+</User>
+
+<User>
+<Id>2</Id>
+<Name>Adam Adamson</Name>
+<Prefix>048</Prefix>
+<Number>234456655</Number>
+</User>
+
+
+<User>
+<Id>4</Id>
+<Name>Jack Jackson</Name>
+<Prefix>1123</Prefix>
+<Number>859454213</Number>
+</User>
+<User>
+<Id>5</Id>
+<Name>Jack Jackson3</Name>
+<Prefix>1123</Prefix>
+<Number>859454213</Number>
+</User>
+
+
+<User>
+<Id>6</Id>
+<Name>Jack Jackson2</Name>
+<Prefix>1123</Prefix>
+<Number>83333</Number>
+</User>
+
+</PhoneBook>

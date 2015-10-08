@@ -1,0 +1,92 @@
+<html>
+<head>
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>  
+
+
+<button id="json">Search!</button>
+<input id="textinput" name="textinput" type="text" value="Phone Number" >
+<input type="radio" name="search" value="prefix" id="search1">Search By Prefix
+<input type="radio" name="search" value="number" id="search2">Search By Number
+<script type="text/javascript">
+
+	
+
+    $('#json').click(function(){ 
+    	var content='';
+   
+    	var textboxvalue = $('input[name=textinput]').val();
+    	
+    	
+    	if(document.getElementById('search2').checked){
+        $.getJSON("http://localhost:8080/users/"+textboxvalue,
+        		   function(data) {
+   	     content ='<tbody id="results">';
+        	 $.each(data, function(index, value) {
+		
+        	
+        		 content += '<tr><td>' +value.Name+'</td>'+'<td>' + value.Prefix +'</td>' +'<td>'+value.Number +'</td>'+  '</tr>';
+        	  });
+        	content+='  </tbody>';
+        		    $("#results").replaceWith(content);
+        		   });
+    	}
+    	if(document.getElementById('search1').checked){
+    		 $.getJSON("http://localhost:8080/users/prefix/"+textboxvalue,
+          		   function(data) {
+    			  content ='<tbody id="results">';
+          	 $.each(data, function(index, value) {
+  		
+          	
+          		 content += '<tr><td>' +value.Name+'</td>'+'<td>' + value.Prefix +'</td>' +'<td>'+value.Number +'</td>'+  '</tr>';
+          	  });
+         	content+='  </tbody>';
+          		    $("#results").replaceWith(content);
+          		   });
+    	}
+        
+    });
+
+    $(document).ready(function(){
+    	   var content = '';
+
+        $.ajax({ 
+        	   type: "GET",
+        	   dataType: "json",
+        	   url: "http://localhost:8080/users",
+        	   success: function(data){        
+        		  
+        		   $.each(data.PhoneBook.User, function(index, value) {
+        			
+        			      content += '<tr><td>' +value.Name+'</td>'+'<td>' + value.Prefix +'</td>' +'<td>'+value.Number +'</td>'+  '</tr>';
+        			    });
+        		    $(content).appendTo("#results");
+        		   
+                 
+        	   }
+       
+         });
+    });
+
+</script>
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Prefix</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody id="results">
+   
+    </tbody>
+  </table>
+         
+</ul>
+</body>
+
+</html>
