@@ -8,7 +8,8 @@
 <body>  
 
 
-<button id="json">Search!</button>
+<button id="json" class="btn btn-info">Search!</button>
+<button id="all" class="btn btn-info">Show All Records!</button>
 <input id="textinput" name="textinput" type="text" value="Phone Number" >
 <input type="radio" name="search" value="prefix" id="search1">Search By Prefix
 <input type="radio" name="search" value="number" id="search2">Search By Number
@@ -50,7 +51,27 @@
     	}
         
     });
+    $('#all').click(function(){ 
+    	var content = '';
 
+        $.ajax({ 
+        	   type: "GET",
+        	   dataType: "json",
+        	   url: "http://localhost:8080/users",
+        	   success: function(data){        
+        		  
+        		   $.each(data.PhoneBook.User, function(index, value) {
+        			
+        			      content += '<tr><td>' +value.Name+'</td>'+'<td>' + value.Prefix +'</td>' +'<td>'+value.Number +'</td>'+  '</tr>';
+        			    });
+        		    $(content).appendTo("#results");
+        		   
+                 
+        	   }
+       
+         });
+    });
+    
     $(document).ready(function(){
     	   var content = '';
 
